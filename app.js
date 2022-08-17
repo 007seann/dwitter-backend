@@ -30,5 +30,5 @@ app.use((error, req, res, next) => {
 
 db.getConnection().then((connection) => console.log(connection));
 
-// const server = app.listen(config.host.port);
-// initSocket(server);
+const server = app.listen(config.host.port);
+initSocket(server);
