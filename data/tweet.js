@@ -1,11 +1,30 @@
-import * as userRepository from './auth.js';
 import { db } from '../db/database.js';
+import SQ from 'sequelize';
+import { sequelize } from '../db/database.js';
+import { User } from './auth.js';
+const DataTypes = SQ.DataTypes;
+
+const Tweet = sequelize.define('tweet', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
+  },
+  text: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+});
+Tweet.belongsTo(User);
 
 const SELECT_JOIN =
   'SELECT tw.id, tw.text, tw.createdAt, tw.userId, us.username, us.name, us.url FROM tweets as tw JOIN users as us ON tw.userId=us.id';
 const ORDER_DESC = 'ORDER BY tw.createdAt DESC';
 export async function getAll() {
-  return db.execute(`${SELECT_JOIN} ${ORDER_DESC}`).then((result) => result[0]);
+  return db
+    .execute(`${SELECT_JOIN} ${ORDER_DESC}`) //
+    .then((result) => result[0]);
 }
 
 export async function getAllByUsername(username) {
