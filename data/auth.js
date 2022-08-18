@@ -29,7 +29,7 @@ export const User = sequelize.define(
     },
     url: DataTypes.TEXT,
   },
-  { timestamps: false }
+  { timestamps: true }
 );
 
 export async function findByUsername(username) {
