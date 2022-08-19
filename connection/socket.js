@@ -8,7 +8,7 @@ class Socket {
     this.io = new Server(server, {
       //cors가 뭐였지?
       cors: {
-        origin: '*',
+        origin: config.cors.allowedOrigin,
       },
     });
 
