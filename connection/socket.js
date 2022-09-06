@@ -33,7 +33,7 @@ class Socket {
 
 let socket;
 export function initSocket(server) {
-  if (!server) {
+  if (!socket) {
     socket = new Socket(server);
   }
 }
